@@ -26,7 +26,18 @@ class RetirementCalculatorUITests: XCTestCase {
         // UI tests must launch the application that they test.
         let app = XCUIApplication()
         app.launch()
-
+        
+        let throwErrorButton = XCUIApplication().buttons["MainButton"]
+        throwErrorButton.tap()
+        
+        let buttonTappedScreenshot = throwErrorButton.screenshot()
+        let buttonTappedAttachment = XCTAttachment(screenshot: buttonTappedScreenshot)
+        buttonTappedAttachment.name = "Button screenshot after one tap is applied"
+        buttonTappedAttachment.lifetime = .keepAlways
+        add(buttonTappedAttachment)
+        
+        XCTAssertEqual(throwErrorButton.exists, true)
+        
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
