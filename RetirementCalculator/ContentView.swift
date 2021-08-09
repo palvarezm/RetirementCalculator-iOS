@@ -12,14 +12,16 @@ import AppCenterAnalytics
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    
+    @State private var didTap = false
 
     var body: some View {
         NavigationView {
             Button("Throw Error")  {
-                let properties = ["Time:":  "\(Date())"]
-                Analytics.trackEvent("Main Button clicked", withProperties: properties)
-            }
+//                let properties = ["Time:":  "\(Date())"]
+//                Analytics.trackEvent("Main Button clicked", withProperties: properties)
+
+                self.didTap = !self.didTap
+            }.background(didTap ? Color.black : Color.red)
         }
     }
 }
